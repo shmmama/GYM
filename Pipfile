@@ -12,6 +12,8 @@ pillow = "*"
 django-phonenumber-field = {extras = ["phonenumberslite"], version = "*"}
 drf-nested-routers = "*"
 django-filter = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
