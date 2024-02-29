@@ -27,8 +27,8 @@ class TraineeAdmin(admin.ModelAdmin):
     list_display = ['id','first_name','last_name','phone','ultimate_goal','suitable_period','sport_name']
     list_editable = ['suitable_period' , 'ultimate_goal']
     list_per_page = 10
-    list_select_related = ['sport']
-    ordering = ['first_name' , 'last_name']
+    list_select_related = ['user','sport']
+    ordering = ['user__first_name' , 'user__last_name']
     list_filter = ['sport','suitable_period']
     search_fields = ['first_name__istartswith']
 

@@ -53,17 +53,22 @@ class Trainee(models.Model):
         (EVENING_PERIOD , 'evening'),
         (AFTERNOON_PERIOD , 'afternoon')
     ] 
-    first_name = models.CharField(max_length = 255)
-    last_name = models.CharField(max_length = 255)
+    # first_name = models.CharField(max_length = 255)
+    # last_name = models.CharField(max_length = 255)
     phone = PhoneNumberField(blank = True)
     birth_date = models.DateField(null =True)
     ultimate_goal = models.CharField(max_length=1, choices = MEMBER_CHOICES , default =MEMBER_LOSE_WEIGHT)
     suitable_period = models.CharField(max_length=1, choices = STATUS_TIME , default = MORNING_PERIOD) 
     sport = models.ForeignKey(Sport , on_delete = models.PROTECT,related_name='trainee')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete = models.CASCADE)
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
+    def first_name(self):
+        return self.user.first_name
+    def last_name(self):
+        return self.user.last_name
     class Meta:
-        ordering = ['first_name', 'last_name']
+        ordering = ['user__first_name', 'user__last_name']
         
 
 class Address(models.Model):
